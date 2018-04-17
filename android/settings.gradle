@@ -1,0 +1,3 @@
+rootProject.name = 'Fake'
+
+include ':app'

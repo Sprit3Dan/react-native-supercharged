@@ -1,0 +1,25 @@
+lane :ios_release do |options|
+  ENV["BUNDLE_CONFIG"] = "config/prod.haul.js"
+  ENV["OUT_PATH"] = "./ios/HelloWorld/main.jsbundle"
+  ENV["ASS_PATH"] = "./ios/HelloWorld/assets"
+  gym(
+    project: "ios/immunoconnect.xcodeproj",
+    configuration: "Release",
+    scheme: options[:project],
+    silent: true,
+    clean: true,
+    sdk: "iphoneos11.2",
+  )
+end
+
+lane :android_release do |options|
+  gradle(
+    project_dir: "android",
+    task: "assembleRelease",
+    properties: {
+      "bundleInDebug" => false,
+      "bundleInRelease" => true,
+      "configPath" => "prod.haul"
+    }
+  )
+end

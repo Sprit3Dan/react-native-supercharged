@@ -1,0 +1,41 @@
+{
+  "name": "react-native-supercharged",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "react": "16.3.1",
+    "react-native": "0.55.2"
+  },
+  "devDependencies": {
+    "babel-jest": "22.4.3",
+    "babel-loader": "^7.1.2",
+    "babel-preset-react-native": "4.0.0",
+    "jest": "22.4.3",
+    "react-test-renderer": "16.3.1",
+    "@types/jest": "^22.0.1",
+    "@types/react": "^16.0.5",
+    "@types/react-native": "^0.51.0",
+    "ts-jest": "^22.0.1",
+    "typescript": "^2.0.0",
+    "haul": "1.0.0-beta.14",
+    "prettier": "^1.10.2"
+  },
+  "jest": {
+    "preset": "react-native",
+    "transform": {
+      "^.+\\.jsx?$": "<rootDir>/node_modules/babel-jest",
+      "^.+\\.tsx?$": "ts-jest"
+    }
+  },
+  "prettier": {
+    "printWidth": 120,
+    "useTabs": true,
+    "singleQuote": true,
+    "jsxBracketSameLine": true,
+    "trailingComma": "es5"
+  }
+}
