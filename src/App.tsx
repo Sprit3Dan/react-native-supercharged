@@ -15,7 +15,7 @@ const instructions = Platform.select({
 						 'Shake or press menu button for dev menu',
 });
 
-export class App extends React.Component<undefined, State> {
+export class App extends React.Component<undefined, undefined> {
 		public render(): JSX.Element {
 				return (
 						<View style={styles.container}>

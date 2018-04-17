@@ -3,9 +3,9 @@ lane :ios_release do |options|
   ENV["OUT_PATH"] = "./ios/HelloWorld/main.jsbundle"
   ENV["ASS_PATH"] = "./ios/HelloWorld/assets"
   gym(
-    project: "ios/immunoconnect.xcodeproj",
+    project: "ios/HelloWorld.xcodeproj",
     configuration: "Release",
-    scheme: options[:project],
+    scheme: "HelloWorld",
     silent: true,
     clean: true,
     sdk: "iphoneos11.2",
