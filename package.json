@@ -18,6 +18,7 @@
     "babel-jest": "22.4.3",
     "babel-loader": "^7.1.2",
     "babel-preset-react-native": "4.0.0",
+    "detox": "^7.3.3",
     "haul": "1.0.0-beta.14",
     "jest": "22.4.3",
     "prettier": "^1.10.2",
@@ -32,7 +33,7 @@
       "^.+\\.jsx?$": "<rootDir>/node_modules/babel-jest",
       "^.+\\.tsx?$": "ts-jest"
     },
-		"testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
     "moduleFileExtensions": [
       "ts",
       "tsx",
@@ -48,5 +49,22 @@
     "singleQuote": true,
     "jsxBracketSameLine": true,
     "trailingComma": "es5"
+  },
+  "detox": {
+    "test-runner": "jest",
+    "runner-config": "e2e/config.json",
+    "configurations": {
+      "ios.sim.debug": {
+        "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/HelloWorld.app",
+        "build": "xcodebuild -project ios/HelloWorld.xcodeproj -scheme HelloWorld -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
+        "type": "ios.simulator",
+        "name": "iPhone 7"
+      },
+      "android.emu.release": {
+        "binaryPath": "android/app/build/outputs/apk/release/app-release-unsigned.apk",
+        "type": "android.emulator",
+        "name": "Nexus_5X_API_27_x86"
+      }
+    }
   }
 }
