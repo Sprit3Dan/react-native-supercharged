@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+		"postinstall": "/bin/sh node_modules/haul/src/utils/haul-integrate.sh"
   },
   "dependencies": {
     "react": "16.3.1",
@@ -56,12 +57,16 @@
     "configurations": {
       "ios.sim.debug": {
         "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/HelloWorld.app",
-        "build": "xcodebuild -project ios/HelloWorld.xcodeproj -scheme HelloWorld -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
+        "type": "ios.simulator",
+        "name": "iPhone 7"
+      },
+			"ios.sim.release": {
+        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/HelloWorld.app",
         "type": "ios.simulator",
         "name": "iPhone 7"
       },
       "android.emu.release": {
-        "binaryPath": "android/app/build/outputs/apk/release/app-release-unsigned.apk",
+        "binaryPath": "android/app/build/outputs/apk/release/app-release.apk",
         "type": "android.emulator",
         "name": "Nexus_5X_API_27_x86"
       }

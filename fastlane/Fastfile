@@ -17,6 +17,18 @@ platform :ios do
       sdk: "iphoneos11.2",
     )
   end
+
+  lane :test_e2e_release do |options|
+    ENV["BUNDLE_CONFIG"] = "config/prod.haul.js"
+    xcodebuild(
+      project: "ios/HelloWorld.xcodeproj",
+      scheme: "HelloWorld",
+      configuration: "Release",
+      sdk: "iphonesimulator",
+      derivedDataPath: "ios/build",
+    )
+    sh("cd .. && node node_modules/.bin/detox test -c ios.sim.release")
+  end
 end
 
 platform :android do

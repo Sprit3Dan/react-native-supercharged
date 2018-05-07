@@ -122,10 +122,19 @@ android {
             include "armeabi-v7a", "x86"
         }
     }
+    signingConfigs {
+        release {
+            storeFile file("HelloWorld.keystore")
+            storePassword "12345678"
+            keyAlias "HelloWorld"
+            keyPassword "12345678"
+        }
+    }
     buildTypes {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
         }
     }
     // applicationVariants are e.g. debug, release
@@ -141,10 +150,16 @@ android {
             }
         }
     }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"]) // TODO: are we need this?
     implementation "com.android.support:appcompat-v7:27.0.2"
     implementation "com.facebook.react:react-native:+"  // From node_modules
 
