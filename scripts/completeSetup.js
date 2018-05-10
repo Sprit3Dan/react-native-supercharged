@@ -2,7 +2,7 @@ var fs = require('fs');
 var execSync = require('child_process').execSync;
 
 var package = JSON.parse(fs.readFileSync('./package.json', 'utf-8'));
-var packageToMerge = JSON.parse(fs.readFileSync('./package.json.template', 'utf-8'));
+var packageToMerge = JSON.parse(fs.readFileSync('./package.template.json', 'utf-8'));
 
 function isObject(o) {
 	return (typeof o === 'object') && (o != null);
@@ -22,8 +22,10 @@ function mergePackages(main, template) {
 
 fs.writeFileSync('./package.json', JSON.stringify(mergePackages(package, packageToMerge), null, '  '));
 
+console.log('Project package.json file changed. Installing dependencies now...');
+
 try {
-	execSync('npm i');
+	execSync('npm i', {stdio: 'inherit'});
 } catch (e) {
 	console.warn('Failed to load dependencies, please run \'npm install\'');
 }
