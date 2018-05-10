@@ -1,25 +1,79 @@
-lane :ios_release do |options|
-  ENV["BUNDLE_CONFIG"] = "config/prod.haul.js"
-  ENV["OUT_PATH"] = "./ios/HelloWorld/main.jsbundle"
-  ENV["ASS_PATH"] = "./ios/HelloWorld/assets"
-  gym(
-    project: "ios/immunoconnect.xcodeproj",
-    configuration: "Release",
-    scheme: options[:project],
-    silent: true,
-    clean: true,
-    sdk: "iphoneos11.2",
-  )
+platform :ios do
+  lane :run_emulator do |options|
+    sh("cd .. && react-native run-ios")
+    sh("cd .. && node node_modules/.bin/haul --config ./config/dev.haul.js --platform ios")
+  end
+
+  lane :ios_release do |options|
+    ENV["BUNDLE_CONFIG"] = "config/prod.haul.js"
+    ENV["OUT_PATH"] = "./ios/HelloWorld/main.jsbundle"
+    ENV["ASS_PATH"] = "./ios/HelloWorld/assets"
+    gym(
+      project: "ios/HelloWorld.xcodeproj",
+      configuration: "Release",
+      scheme: "HelloWorld",
+      silent: true,
+      clean: true,
+      sdk: "iphoneos11.2",
+    )
+  end
+
+  lane :test_e2e_release do |options|
+    ENV["BUNDLE_CONFIG"] = "config/prod.haul.js"
+    xcodebuild(
+      project: "ios/HelloWorld.xcodeproj",
+      scheme: "HelloWorld",
+      configuration: "Release",
+      sdk: "iphonesimulator",
+      derivedDataPath: "ios/build",
+    )
+    sh("cd .. && node node_modules/.bin/detox test -c ios.sim.release")
+  end
 end
 
-lane :android_release do |options|
-  gradle(
-    project_dir: "android",
-    task: "assembleRelease",
-    properties: {
-      "bundleInDebug" => false,
-      "bundleInRelease" => true,
-      "configPath" => "prod.haul"
-    }
-  )
+platform :android do
+  lane :run_emulator do |options|
+    sh("cd .. && react-native run-android")
+    sh("cd .. && node node_modules/.bin/haul --config ./config/dev.haul.js --platform android")
+  end
+  
+  lane :release do |options|
+    gradle(
+      project_dir: "android",
+      task: "assembleRelease",
+      properties: {
+        "bundleInDebug" => false,
+        "bundleInRelease" => true,
+        "configPath" => "prod.haul"
+      }
+    )
+  end
+
+  lane :test_e2e_release do |options|
+    gradle(
+      project_dir: "android",
+      task: "assembleRelease",
+      properties: {
+        "bundleInDebug" => false,
+        "bundleInRelease" => true,
+        "configPath" => "prod.haul"
+      },
+      system_properties: {
+        "testBuildType" => "release"
+      }
+    )
+    gradle(
+      project_dir: "android",
+      task: "assembleAndroidTest",
+      properties: {
+        "bundleInDebug" => false,
+        "bundleInRelease" => true,
+        "configPath" => "prod.haul"
+      },
+      system_properties: {
+        "testBuildType" => "release"
+      }
+    )
+    sh("cd .. && node node_modules/.bin/detox test -c android.emu.release")
+  end
 end

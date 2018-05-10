@@ -5,6 +5,7 @@ import {
 		StyleSheet,
 		View,
 		Text,
+		TouchableOpacity,
 		Platform,
 } from 'react-native';
 
@@ -15,7 +16,11 @@ const instructions = Platform.select({
 						 'Shake or press menu button for dev menu',
 });
 
-export class App extends React.Component<undefined, State> {
+export class App extends React.Component<undefined, { greeting: String }> {
+		state = {
+				greeting: ''
+		}
+		
 		public render(): JSX.Element {
 				return (
 						<View style={styles.container}>
@@ -28,6 +33,17 @@ export class App extends React.Component<undefined, State> {
 								<Text style={styles.instructions}>
 										{instructions}
 								</Text>
+
+								<View testID="testBlock" style={{ paddingTop: 20, justifyContent: 'center', alignItems: 'center' }}>
+										<Text style={{ fontSize: 25, marginBottom: 30 }}>This is block for e2e tests</Text>
+										<Text style={{ fontSize: 20, marginBottom: 20 }}>{this.state.greeting}</Text>
+										<TouchableOpacity testID="helloButton" onPress={() => this.setState({ greeting: 'Hello'}) }>
+												<Text>Say Hello</Text>
+										</TouchableOpacity>
+										<TouchableOpacity testID="worldButton" onPress={() => this.setState({ greeting: 'World'}) }>
+												<Text>Say World</Text>
+										</TouchableOpacity>
+								</View>
 						</View>
 				);
 		}

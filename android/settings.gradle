@@ -1,3 +1,6 @@
-rootProject.name = 'Fake'
+rootProject.name = 'HelloWorld'
 
 include ':app'
+
+include ':detox'
+project(':detox').projectDir = new File(rootProject.projectDir, '../node_modules/detox/android/detox')
