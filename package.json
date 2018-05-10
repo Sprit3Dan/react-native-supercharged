@@ -19,7 +19,7 @@
     "babel-jest": "22.4.3",
     "babel-loader": "^7.1.2",
     "babel-preset-react-native": "4.0.0",
-    "detox": "git+https://git@github.com/savelichalex/detox.git#d97883a",
+    "detox": "^7.3.3",
     "haul": "1.0.0-beta.14",
     "jest": "22.4.3",
     "prettier": "^1.10.2",
