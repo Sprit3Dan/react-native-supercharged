@@ -1,0 +1,39 @@
+{
+	"defaultSeverity": "error",
+	"rules": {
+		"no-trailing-whitespace": true,
+		"indent": [true, "tabs", 2],
+		"eofline": true,
+		"max-line-length": [true, 120],
+		"member-ordering": [
+			true, {
+				"order": [
+					"constructor",
+					"public-static-field",
+					"public-instance-field",
+					"private-static-field",
+					"private-instance-field",
+					"public-static-method",
+					"public-instance-method",
+					"private-instance-method"
+				]
+			}
+		],
+		"prefer-for-of": true,
+		"no-duplicate-super": true,
+		"no-var-keyword": true,
+		"prefer-const": true,
+		"arrow-return-shorthand": true,
+		"binary-expression-operand-order": true,
+		"triple-equals": [true, "allow-null-check"],
+		"semicolon": [true, "always", "ignore-bound-class-methods"],
+		"quotemark": [true, "single", "avoid-escape", "jsx-double"],
+		"one-line": [true, "check-else"],
+		"object-literal-key-quotes": [true, "as-needed"],
+		"typedef": [
+			true,
+			"call-signature",
+			"property-declaration"
+		]
+	}
+}
