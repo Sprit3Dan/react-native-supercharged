@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-    "postinstall": "/bin/sh node_modules/haul/src/utils/haul-integrate.sh",
+    "postinstall": "/bin/sh node_modules/haul/src/utils/haul-integrate.sh && node scripts/completeSetup.js",
     "lint": "tslint -p tsconfig.json"
   },
   "dependencies": {

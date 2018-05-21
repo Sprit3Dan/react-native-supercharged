@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-		"postinstall": "/bin/sh node_modules/haul/src/utils/haul-integrate.sh"
+    "postinstall": "/bin/sh node_modules/haul/src/utils/haul-integrate.sh && node scripts/completeSetup.js"
   },
   "dependencies": {
     "react": "16.3.1",
@@ -35,7 +35,7 @@
       "^.+\\.tsx?$": "ts-jest"
     },
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-		"testPathIgnorePatterns": ["e2e"],
+    "testPathIgnorePatterns": ["e2e"],
     "moduleFileExtensions": [
       "ts",
       "tsx",
@@ -61,14 +61,14 @@
         "type": "ios.simulator",
         "name": "iPhone 7"
       },
-			"ios.sim.release": {
+      "ios.sim.release": {
         "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/HelloWorld.app",
         "type": "ios.simulator",
         "name": "iPhone 7"
       },
       "android.emu.release": {
         "binaryPath": "android/app/build/outputs/apk/release/app-release.apk",
-				"testBinaryPath": "android/app/build/outputs/apk/androidTest/release/app-release-androidTest.apk",
+        "testBinaryPath": "android/app/build/outputs/apk/androidTest/release/app-release-androidTest.apk",
         "type": "android.emulator",
         "name": "Nexus_5X_API_27_x86"
       }
