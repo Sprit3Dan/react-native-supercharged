@@ -4,7 +4,7 @@ platform :ios do
     sh("cd .. && node node_modules/.bin/haul --config ./config/dev.haul.js --platform ios")
   end
 
-  lane :ios_release do
+  lane :release do
     ENV["BUNDLE_CONFIG"] = "config/prod.haul.js"
     ENV["OUT_PATH"] = "./ios/HelloWorld/main.jsbundle"
     ENV["ASS_PATH"] = "./ios/HelloWorld/assets"
