@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "es6",
+    "jsx": "react",
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "typeRoots": ["typings/", "./node_modules/@types"],
+    "baseUrl": "."
+  },
+  "exclude": ["node_modules"]
+}
