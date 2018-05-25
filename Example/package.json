@@ -15,7 +15,6 @@
     "react-navigation": "^2.0.1"
   },
   "devDependencies": {
-    "tsconfig-paths-webpack-plugin": "^3.0.3",
     "@types/jest": "^22.0.1",
     "@types/react": "^16.0.5",
     "@types/react-native": "^0.51.0",
@@ -29,6 +28,7 @@
     "react-test-renderer": "16.3.1",
     "ts-jest": "^22.0.1",
     "ts-loader": "^3.5.0",
+    "tsconfig-paths-webpack-plugin": "^3.0.3",
     "typescript": "^2.0.0"
   },
   "jest": {

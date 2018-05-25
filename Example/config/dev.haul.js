@@ -3,7 +3,7 @@ const tsConfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const path = require('path');
 
 module.exports = ({ platform }, { module, resolve }) => ({
-	entry: './src/App.tsx',
+	entry: './src/index.dev.ts',
 	devtool: 'eval-source-map',
 	module: {
 		...module,
@@ -38,6 +38,8 @@ module.exports = ({ platform }, { module, resolve }) => ({
 			__USE_MOCKS__: false,
 		}),
 		new tsConfigPathsPlugin({ configFile: path.join(__dirname, '..', 'tsconfig.json') }),
+		new webpack.NamedModulesPlugin(),
+		new webpack.HotModuleReplacementPlugin(),
 		...resolve.plugins,
 	]
 });
