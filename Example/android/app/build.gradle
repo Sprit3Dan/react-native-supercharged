@@ -160,6 +160,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-gesture-handler')
     implementation "com.android.support:appcompat-v7:27.0.2"
     implementation "com.facebook.react:react-native:+"  // From node_modules
 

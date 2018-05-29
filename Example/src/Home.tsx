@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, Image } from 'react-native';
 import { Card } from './Card';
 
 const HorizontallCards = ({ title, children }) => (
@@ -21,7 +21,17 @@ export class HomeScreen extends React.Component {
 						style={{ backgroundColor: '#f7f7f7' }}
 					/>
 					<HorizontallCards title="Features">
-						<Card title="Test2" description="Hi there!" style={{ backgroundColor: '#123c69' }} />
+						<Card
+							title="Test2"
+							description="TypeScript support!"
+							style={{ backgroundColor: '#123c69' }}
+						/>
+						<View>
+							<Image
+								style={{ width: 300, height: 20 }}
+								source={{ uri: 'https://github.com/Microsoft/TypeScript/blob/master/doc/logo.svg' }}
+							/>
+						</View>
 						<Card title="Test2" description="Hi there!" style={{ backgroundColor: '#123c69' }} />
 						<Card title="Test2" description="Hi there!" style={{ backgroundColor: '#123c69' }} />
 						<Card title="Test2" description="Hi there!" style={{ backgroundColor: '#123c69' }} />

@@ -1,5 +1,5 @@
 platform :ios do
-  lane :debug do
+  lane :run_emulator do
     sh("cd .. && react-native run-ios")
     sh("cd .. && node node_modules/.bin/haul --config ./config/dev.haul.js --platform ios")
   end

@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { Animated, View, Text, StyleSheet, ViewStyle } from 'react-native';
+import { RawButton, State } from 'react-native-gesture-handler';
 
 const isLight = hex => {
 	// https://24ways.org/2010/calculating-color-contrast
@@ -14,19 +15,65 @@ const isLight = hex => {
 
 const isDark = hex => !isLight(hex);
 
-export const Card = ({ title, description, style }) => {
-	const backgroundColor = style.backgroundColor || '#ffffff';
-	const isLightBg = isLight(backgroundColor);
-	const titleColor = isLightBg ? '#84848a' : 'rgba(255,255,255, 0.7)';
-	const descriptionColor = isLightBg ? '#000000' : '#ffffff';
+interface CardProps {
+	title: string;
+	description: string;
+	style: ViewStyle;
+}
 
-	return (
-		<View style={[style, { backgroundColor }, styles.container]}>
-			<Text style={[styles.title, { color: titleColor }]}>{title}</Text>
-			<Text style={[styles.description, { color: descriptionColor }]}>{description}</Text>
-		</View>
-	);
-};
+export class Card extends React.Component<CardProps, undefined> {
+	constructor(props) {
+		super(props);
+
+		this._scale = new Animated.Value(1);
+	}
+
+	_scale: Animated.Value;
+
+	onHandlerStateChange = ({ nativeEvent }) => {
+		console.log(nativeEvent.state);
+		if (nativeEvent.state === State.ACTIVE) {
+			Animated.spring(this._scale, {
+				velocity: 0.5,
+				toValue: 0.95,
+				useNativeDriver: true,
+			}).start();
+		}
+		if (nativeEvent.state === State.END || nativeEvent.state === State.CANCELLED) {
+			Animated.spring(this._scale, {
+				velocity: 0.5,
+				toValue: 1,
+				useNativeDriver: true,
+			}).start();
+		}
+	};
+
+	render() {
+		const { title, description, style } = this.props;
+
+		const backgroundColor = style.backgroundColor || '#ffffff';
+		const isLightBg = isLight(backgroundColor);
+		const titleColor = isLightBg ? '#84848a' : 'rgba(255,255,255, 0.7)';
+		const descriptionColor = isLightBg ? '#000000' : '#ffffff';
+
+		return (
+			<RawButton
+				onGestureEvent={this.onHandlerStateChange}
+				onHandlerStateChange={this.onHandlerStateChange}
+				shouldCancelWhenOutside>
+				<Animated.View
+					style={[
+						style,
+						{ backgroundColor, transform: [{ scale: this._scale }] },
+						styles.container,
+					]}>
+					<Text style={[styles.title, { color: titleColor }]}>{title}</Text>
+					<Text style={[styles.description, { color: descriptionColor }]}>{description}</Text>
+				</Animated.View>
+			</RawButton>
+		);
+	}
+}
 
 const styles = StyleSheet.create({
 	container: {
