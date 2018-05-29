@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { View, Text, ScrollView, StyleSheet, Image } from 'react-native';
 import { Card } from './Card';
+import { HorizontalCards } from './HorizontalCards';
 
-const HorizontallCards = ({ title, children }) => (
-	<View>
-		<Text>{title}</Text>
-		<ScrollView horizontal>{children}</ScrollView>
-	</View>
-);
+import TsIcon from './ts.svg';
+import JestIcon from './jest.svg';
+import PrettierIcon from './prettier-icon.svg';
+import FastlaneIcon from './fastlane-icon.svg';
+import LintIcon from './lint-icon.svg';
 
 export class HomeScreen extends React.Component {
 	render() {
@@ -20,31 +20,13 @@ export class HomeScreen extends React.Component {
 						description="Welcome to example!"
 						style={{ backgroundColor: '#f7f7f7' }}
 					/>
-					<HorizontallCards title="Features">
-						<Card
-							title="Test2"
-							description="TypeScript support!"
-							style={{ backgroundColor: '#123c69' }}
-						/>
-						<View>
-							<Image
-								style={{ width: 300, height: 20 }}
-								source={{ uri: 'https://github.com/Microsoft/TypeScript/blob/master/doc/logo.svg' }}
-							/>
-						</View>
-						<Card title="Test2" description="Hi there!" style={{ backgroundColor: '#123c69' }} />
-						<Card title="Test2" description="Hi there!" style={{ backgroundColor: '#123c69' }} />
-						<Card title="Test2" description="Hi there!" style={{ backgroundColor: '#123c69' }} />
-						<Card title="Test2" description="Hi there!" style={{ backgroundColor: '#123c69' }} />
-						<Card title="Test2" description="Hi there!" style={{ backgroundColor: '#123c69' }} />
-						<Card title="Test2" description="Hi there!" style={{ backgroundColor: '#123c69' }} />
-						<Card title="Test2" description="Hi there!" style={{ backgroundColor: '#123c69' }} />
-					</HorizontallCards>
-					<Card title="Test2" description="Hi there!" style={{ backgroundColor: '#123c69' }} />
-					<Card title="Test2" description="Hi there!" style={{ backgroundColor: '#123c69' }} />
-					<Card title="Test2" description="Hi there!" style={{ backgroundColor: '#123c69' }} />
-					<Card title="Test2" description="Hi there!" style={{ backgroundColor: '#123c69' }} />
-					<Card title="Test2" description="Hi there!" style={{ backgroundColor: '#123c69' }} />
+					<HorizontalCards.Wrapper title="Features">
+						<HorizontalCards.Item label="TypeScript" image={TsIcon} />
+						<HorizontalCards.Item label="Jest" image={JestIcon} />
+						<HorizontalCards.Item label="Prettier" image={PrettierIcon} />
+						<HorizontalCards.Item label="Fastlane" image={FastlaneIcon} />
+						<HorizontalCards.Item label="Tslint" image={LintIcon} />
+					</HorizontalCards.Wrapper>
 				</ScrollView>
 			</View>
 		);
@@ -61,5 +43,7 @@ const styles = StyleSheet.create({
 	},
 	label: {
 		fontSize: 30,
+		fontWeight: '800',
+		marginLeft: 10,
 	},
 });

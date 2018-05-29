@@ -16,6 +16,17 @@ module.exports = ({ platform }, { module, resolve }) => ({
 					{ loader: 'ts-loader' },
 				]
 			},
+			{
+				test: /\.svg$/,
+				use: [
+					{
+						loader: 'svgr/webpack',
+						options: {
+							native: true,
+						}
+					}
+				]
+			},
 			...module.rules,
 		]
 	},
