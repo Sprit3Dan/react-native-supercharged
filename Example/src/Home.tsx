@@ -13,7 +13,7 @@ export class HomeScreen extends React.Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				<Text style={styles.label}>Title</Text>
+				<Text style={styles.label}>Example App</Text>
 				<ScrollView contentContainerStyle={styles.inner}>
 					<Card
 						title="FROM THE CREATORS"
@@ -21,11 +21,18 @@ export class HomeScreen extends React.Component {
 						style={{ backgroundColor: '#f7f7f7' }}
 					/>
 					<HorizontalCards.Wrapper title="Features">
-						<HorizontalCards.Item label="TypeScript" image={TsIcon} />
-						<HorizontalCards.Item label="Jest" image={JestIcon} />
-						<HorizontalCards.Item label="Prettier" image={PrettierIcon} />
-						<HorizontalCards.Item label="Fastlane" image={FastlaneIcon} />
-						<HorizontalCards.Item label="Tslint" image={LintIcon} />
+						<HorizontalCards.Item label="TypeScript" image={props => <TsIcon {...props} />} />
+						<HorizontalCards.Item
+							label="Haul"
+							image={({ width, height }) => (
+								<Image source={require('./haul-logo.png')} style={{ width, height }} />
+							)}
+						/>
+						<HorizontalCards.Item label="Jest" image={props => <JestIcon {...props} />} />
+						<HorizontalCards.Item label="Detox" />
+						<HorizontalCards.Item label="Prettier" image={props => <PrettierIcon {...props} />} />
+						<HorizontalCards.Item label="Tslint" image={props => <LintIcon {...props} />} />
+						<HorizontalCards.Item label="Fastlane" image={props => <FastlaneIcon {...props} />} />
 					</HorizontalCards.Wrapper>
 				</ScrollView>
 			</View>
