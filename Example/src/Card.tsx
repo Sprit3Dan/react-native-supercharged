@@ -31,7 +31,6 @@ export class Card extends React.Component<CardProps, undefined> {
 	_scale: Animated.Value;
 
 	onHandlerStateChange = ({ nativeEvent }) => {
-		console.log(nativeEvent.state);
 		if (nativeEvent.state === State.ACTIVE) {
 			Animated.spring(this._scale, {
 				velocity: 0.5,
